@@ -8,7 +8,9 @@
 
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
-//import I18n from './i18n/i18n'
+import I18n from './i18n/i18n';
+import {Button,Alert} from 'react-native';
+
 //import LocaleSet from 'react-native-i18n';
 //import { getLanguages } from 'react-native-i18n';
 
@@ -16,21 +18,7 @@ import {Platform, StyleSheet, Text, View} from 'react-native';
   console.log(languages); // ['en-US', 'en']
 });*/
 
-import I18n from 'react-native-i18n';
-import en from './en/en.js';
-import zh from './zh/zh.js';
-
-I18n.fallbacks = true;
-
-I18n.translations = {
-    zh,
-    en
-}
-
 //console.log(I18n);
-
-
-import {Button,Alert} from 'react-native';
 
 
 const instructions = Platform.select({
@@ -42,32 +30,31 @@ const instructions = Platform.select({
 
 type Props = {};
 
-
-
-
-
-
 export default class App extends Component<Props> {
-constructor(props){
+/*constructor(props){
 super(props);
   this.state = {
       greeting: I18n.t('greeting')
   }
-}
+}*/
 
 toggleLanguage = () =>{
   //Alert.alert(I18n.t('greeting'));
   I18n.locale = I18n.locale == 'zh'? 'en':'zh';
-  var swit = I18n.t('greeting');
-  this.setState({greeting: swit });
+  //Alert.alert(I18n.t('greeting'));
+  this.forceUpdate();
+  /*var swit = I18n.t('greeting');
+  this.setState({greeting: swit });*/
   }
 
+
   render() {
-     //console.log("sssssssssssssssss");
+     console.log("render");
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>{this.state.greeting}</Text>
-        <Button title="Switch Language" onPress = {this.toggleLanguage}></Button>
+        <Text style={styles.welcome}>{I18n.t('greeting')}</Text>
+        <Text style={styles.instructions}>{I18n.t('name')}</Text>
+        <Button style={{color: 'white'}} title={I18n.t('btnContent')} onPress = {this.toggleLanguage}></Button>
 
       </View>
     );

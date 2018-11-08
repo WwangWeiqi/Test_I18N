@@ -1,3 +1,5 @@
 export default {
-    greeting:'Welcome'
+    btnContent: 'Chinese',
+    greeting:'Welcome',
+    name:'weiqiwang'
 }
